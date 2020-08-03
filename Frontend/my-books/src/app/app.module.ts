@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AllbooksComponent } from './components/allbooks/allbooks.component';
 import { AllauthorsComponent } from './components/allauthors/allauthors.component';
 import { BookComponent } from './components/book/book.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { BookComponent } from './components/book/book.component';
     HomeComponent,
     AllbooksComponent,
     AllauthorsComponent,
-    BookComponent
+    BookComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

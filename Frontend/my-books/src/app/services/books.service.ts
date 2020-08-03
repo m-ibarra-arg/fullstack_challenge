@@ -39,7 +39,9 @@ export class BooksService {
       ]
         
     constructor(){
+      console.log("Service ready!");
     }
+    
 
     getBooks(){
         return this.books
@@ -47,6 +49,21 @@ export class BooksService {
     getBook( id : string){
       return this.books[id];
     }
+
+    searchBooks( search : string) : Book[]{
+      
+      let BooksArr:Book[] = [];
+      search = search.toLowerCase();
+      
+      for (let book of this.books){
+        let name = book.name.toLowerCase();
+        if (name.indexOf( search ) >=0 )  {
+          BooksArr.push(book)
+        }
+      }
+    return BooksArr;
+    }
+
 }
 
 export interface Author {

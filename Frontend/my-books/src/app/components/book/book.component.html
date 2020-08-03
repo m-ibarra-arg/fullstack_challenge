@@ -1,5 +1,5 @@
 <div class="jumbotron animated fadeIn fast">
-    <h1 class="display-5">{{ book.name }}</h1>
+    <h1 class="display-5">{{ book.name | uppercase}}</h1>
     <p class="lead"> <span class="font-weight-bold">Author:</span> {{ book.author.firstName }} {{ book.author.lastName }}</p>
     <hr class="my-4">
     <h3 class="display-5"> Information </h3>
