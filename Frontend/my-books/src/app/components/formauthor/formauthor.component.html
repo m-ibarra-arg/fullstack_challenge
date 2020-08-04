@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-between align-items-center">
+    <h4>New Author</h4>
+    <button type="button" [routerLink]="['/all-authors']" class="btn btn-danger ">Cancel</button>
+</div>
+<hr>
+<form autocomplete="off" (ngSubmit)="save(form)" #form="ngForm">
+
+    <div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">First Name</label>
+            <div class="col-8">
+
+
+                <input class="form-control" type="text" name="firstName" [class.is-invalid]="firstName.invalid && firstName.touched" [ngModel]="author.firstName" placeholder="Author's name" required #firstName="ngModel">
+                <small *ngIf="firstName.invalid && firstName.touched" class="form-text text-danger">
+                    The field is required.
+                </small>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Last Name</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" name="lastName" [ngModel]="author.lastName" [class.is-invalid]="lastName.invalid && lastName.touched" placeholder="Author's last name" required #lastName="ngModel">
+                <small *ngIf="lastName.invalid && lastName.touched" class="form-text text-danger">
+                    The field is required.
+                </small>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-outline-primary btn-block">
+            Save
+            </button>
+        </div>
+    </div>
+
+</form>

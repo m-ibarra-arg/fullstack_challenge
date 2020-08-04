@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 // Routes 
 import { APP_ROUTING } from './app.routes'
@@ -19,6 +22,8 @@ import { AllbooksComponent } from './components/allbooks/allbooks.component';
 import { AllauthorsComponent } from './components/allauthors/allauthors.component';
 import { BookComponent } from './components/book/book.component';
 import { SearchComponent } from './components/search/search.component';
+import { FormbookComponent } from './components/formbook/formbook.component';
+import { FormauthorComponent } from './components/formauthor/formauthor.component';
 
 
 @NgModule({
@@ -31,11 +36,16 @@ import { SearchComponent } from './components/search/search.component';
     AllbooksComponent,
     AllauthorsComponent,
     BookComponent,
-    SearchComponent
+    SearchComponent,
+    FormbookComponent,
+    FormauthorComponent
   ],
   imports: [
     BrowserModule,
-    APP_ROUTING
+    APP_ROUTING,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     BooksService,

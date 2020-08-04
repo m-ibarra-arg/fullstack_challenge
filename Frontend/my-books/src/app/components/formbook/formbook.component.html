@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-between align-items-center">
+    <h4>New Book</h4>
+    <button type="button" [routerLink]="['/all-books']" class="btn btn-danger ">Cancel</button>
+</div>
+<hr>
+<form autocomplete="off" (ngSubmit)="save(form)" #form="ngForm">
+
+    <div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Name</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" name="name" [class.is-invalid]="name.invalid && name.touched" [ngModel]="book.name" placeholder="Book's name" required #name="ngModel">
+                <small *ngIf="name.invalid && name.touched" class="form-text text-danger">
+                    The field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">ISBN</label>
+            <div class="col-8">
+
+                <input class="form-control" type="text" name="isbn" [class.is-invalid]="isbn.invalid && isbn.touched" [ngModel]="book.isbn" placeholder="Book's ISBN" required #isbn="ngModel">
+                <small *ngIf="isbn.invalid && isbn.touched" class="form-text text-danger">
+                    The field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Author</label>
+            <div class="col-8">
+
+                <select class="form-control" name="pais" [disabled]="paises.length === 0" [ngModel]="book.author" required>
+                    <option *ngFor="let pais of paises"
+                    [value]="[pais.nombre,pais.codigo]"> 
+                        {{ pais.nombre}} {{ pais.codigo}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="input-group col-md-8">
+            <button type="submit" class="btn btn-outline-primary btn-block">
+            Save
+            </button>
+        </div>
+    </div>
+
+</form>
