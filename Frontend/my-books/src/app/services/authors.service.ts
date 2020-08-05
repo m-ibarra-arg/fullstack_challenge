@@ -3,14 +3,15 @@ import { Author } from './books.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
+
+
+
 @Injectable()
 export class AuthorsService {
-  private url = '/api';
-
-    private author: Author;
+  private url = 'http://localhost:5000/api';
+  private author: Author;
          
-    constructor( private http: HttpClient ){
-    }
+    constructor( private http: HttpClient ){ }
 
     getAuthors(){
       return this.http.get(`${this.url}/authors`).pipe(

@@ -6,11 +6,10 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class BooksService {
     
-    private url = '/api';
+    private url = 'http://localhost:5000/api';
     private book : Book;  
 
-    constructor( private http: HttpClient,
-                 ){ }
+    constructor( private http: HttpClient ){ }
     
     searchBooks( search : string) : Book[]{
       

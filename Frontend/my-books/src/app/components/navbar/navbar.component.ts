@@ -13,7 +13,6 @@ export class NavbarComponent implements OnInit {
   }
 
   searchBook( search: string ){
-    // console.log(search);
     this.router.navigate(['/search', search]);
   }
 
