@@ -9,16 +9,14 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Author</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody *ngFor="let book of books; let i = index">
                 <tr>
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td><a [routerLink]="['/book',i]">{{ book.name }}</a></td>
-                    <td>{{ book.author.firstName }} {{ book.author.lastName }}</td>
-                    <td><button type="button" [routerLink]="['']" class="btn btn-info ">Edit</button>
+                    <th scope="row">{{ book.id }}</th>
+                    <td><a [routerLink]="['/book', book.id ]">{{ book.name }}</a></td>
+                    <td><button type="button" [routerLink]="['/form-book', book.id ]" class="btn btn-info mr-1"><fa-icon [icon]="faPen"></fa-icon></button>
                 </tr>
             </tbody>
         </table>

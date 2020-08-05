@@ -8,17 +8,15 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
+                    <th scope="col">Name</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody *ngFor="let author of authors; let i = index">
                 <tr>
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td>{{ author.firstName }}</td>
-                    <td>{{ author.lastName }}</td>
-                    <td><button type="button" [routerLink]="['']" class="btn btn-info ">Edit</button>
+                    <th scope="row">{{ author.id }}</th>
+                    <td><a [routerLink]="['/author', author.id ]">{{ author.firstName }} {{ author.lastName }}</a></td>
+                    <td><button type="button" [routerLink]="['/form-author', author.id]" class="btn btn-info mr-1"><fa-icon [icon]="faPen"></fa-icon></button>
                     </td>
                 </tr>
             </tbody>

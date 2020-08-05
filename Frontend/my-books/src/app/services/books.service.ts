@@ -1,67 +1,70 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+
 
 @Injectable()
 export class BooksService {
     
-    private books : Book[] = [
-        {
-          name: "El señor de los anillos ",
-          isbn: "1234-ASDFQWER-1234",
-          author: {
-                    firstName: "JRR",
-                    lastName: "Tolkien"
-                    }
-        },
-        {
-          name: "Los dias del venado ",
-          isbn: "1234-ASDFQWER-1234",
-          author: {
-            firstName: "Liliana",
-            lastName: "Baudoc"
-            }
-        },
-        {
-          name: "Harry Potter ",
-          isbn: "1234-ASDFQWER-1234",
-          author: {
-            firstName: "JK",
-            lastName: "Rowling"
-            }
-        },
-        {
-          name: "Sherlock Holmes",
-          isbn: "1234-ASDFQWER-1234",
-          author: {
-            firstName: "Arthut Conan",
-            lastName: "Doyle"
-            }
-        },
-      ]
-        
-    constructor(){
-      console.log("Service ready!");
-    }
+    private url = '/api';
+    private book : Book;  
+
+    constructor( private http: HttpClient,
+                 ){ }
     
-
-    getBooks(){
-        return this.books
-      }
-    getBook( id : string){
-      return this.books[id];
-    }
-
     searchBooks( search : string) : Book[]{
       
       let BooksArr:Book[] = [];
       search = search.toLowerCase();
-      
-      for (let book of this.books){
-        let name = book.name.toLowerCase();
-        if (name.indexOf( search ) >=0 )  {
-          BooksArr.push(book)
+           
+      this.getBooks().subscribe( resp => {
+        console.log(resp)
+        for (let _book of resp){
+          let name = _book.name.toLowerCase();
+          if (name.indexOf( search ) >= 0 )  {
+            BooksArr.push(_book)
+          }
         }
-      }
+      })
+  
     return BooksArr;
+    }
+
+    getBooks(){
+        return this.http.get(`${this.url}/books`).pipe(
+          map( this.myArrayBooks )
+        )
+      }
+    
+    private  myArrayBooks( bookObject : object ){
+      if ( bookObject === null ) {
+        return [];
+      }
+      return bookObject['data']
+    }
+
+    getBook( id : number){
+      return this.http.get(`${this.url}/book/${id}`).pipe(
+        map( this.myArrayBook )
+      );
+    }
+    private  myArrayBook( bookObject : object ){
+      if ( bookObject === null ) {
+        return [];
+      }
+      return bookObject['data']
+    }
+
+    postBook( book : Book ){
+      return this.http.post(`${this.url}/book`, book);
+    }
+
+    putBook ( id : number, book : Book ){
+      return this.http.put(`${this.url}/book/${id}`, book);
+    }
+    
+    deleteBook ( id : number ){
+      return this.http.delete(`${this.url}/book/${id}`);
     }
 
 }

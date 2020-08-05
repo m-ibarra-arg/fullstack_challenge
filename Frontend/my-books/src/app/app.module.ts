@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 // Routes 
@@ -24,6 +25,7 @@ import { BookComponent } from './components/book/book.component';
 import { SearchComponent } from './components/search/search.component';
 import { FormbookComponent } from './components/formbook/formbook.component';
 import { FormauthorComponent } from './components/formauthor/formauthor.component';
+import { AuthorComponent } from './components/author/author.component';
 
 
 @NgModule({
@@ -38,14 +40,16 @@ import { FormauthorComponent } from './components/formauthor/formauthor.componen
     BookComponent,
     SearchComponent,
     FormbookComponent,
-    FormauthorComponent
+    FormauthorComponent,
+    AuthorComponent
   ],
   imports: [
     BrowserModule,
     APP_ROUTING,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [
     BooksService,

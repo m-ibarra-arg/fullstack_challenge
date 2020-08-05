@@ -5,49 +5,47 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthorsService {
-    
-    private authors : Author[] = [
-        {
-        firstName: "JRR",
-        lastName: "Tolkien"
-        },
-        {
-        firstName: "Liliana",
-        lastName: "Baudoc"
-        },
-        {
-        firstName: "JK",
-        lastName: "Rowling"
-        },
-        {
-        firstName: "Arthur Conan",
-        lastName: "Doyle"
-        },
-        {
-        firstName: "Isabel",
-        lastName: "Allende"
-        },
-        {
-        firstName: "Julio",
-        lastName: "Verne"
-        },
-      ]
+  private url = '/api';
+
+    private author: Author;
          
     constructor( private http: HttpClient ){
     }
 
-    getPaises(){
-      return this.http.get('https://restcountries.eu/rest/v2/lang/es').pipe(
-        map( (resp : any[]) => 
-          resp.map( pais => ({ nombre: pais.name, codigo: pais.alpha3Code
-          }) 
+    getAuthors(){
+      return this.http.get(`${this.url}/authors`).pipe(
+        map( this.myArrayAuthors )
         )
-      ))
+      }
+
+    private  myArrayAuthors( bookObject : object ){
+      if ( bookObject === null ) {
+        return [];
+      }
+      return bookObject['data']
     }
 
-    getAuthors(){
-        return this.authors
+    getAuthor( id : number){
+      return this.http.get(`${this.url}/author/${id}`).pipe(
+        map( this.myArrayAuthor )
+      );
+    }
+
+    private  myArrayAuthor( bookObject : object ){
+      if ( bookObject === null ) {
+        return [];
       }
+      return bookObject['data']
+    }
+
+
+    postAuthor( author : Author ){
+      return this.http.post(`${this.url}/author`, author);
+    }
+
+    putAuthor ( id : number, author : Author){
+      return this.http.put(`${this.url}/author/${id}`, author);
+    }
 
 
 }

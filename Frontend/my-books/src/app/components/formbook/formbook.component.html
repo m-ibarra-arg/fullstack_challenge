@@ -33,10 +33,10 @@
             <label class="col-2 col-form-label">Author</label>
             <div class="col-8">
 
-                <select class="form-control" name="pais" [disabled]="paises.length === 0" [ngModel]="book.author" required>
-                    <option *ngFor="let pais of paises"
-                    [value]="[pais.nombre,pais.codigo]"> 
-                        {{ pais.nombre}} {{ pais.codigo}}
+                <select class="form-control" name="author" [(ngModel)]="book.author.id" required>
+                    <option *ngFor="let _author of author"
+                    [value]="_author.id"> 
+                        {{ _author.firstName }} {{ _author.lastName}}
                     </option>
                 </select>
 
